@@ -10,9 +10,10 @@ Tags = ["java", "spring","安全"]
 
 
 ### 签名方法:
-```
 
 #### Header:
+```
+
 @RequestHeader(value = "x-header-timestamp") Long timestamp,
 @RequestHeader(value = "x-header-appid") String appid,
 @RequestHeader(value = "x-header-sign") String sign
@@ -47,7 +48,7 @@ sign=Md5(orignalString).toUpperCase
 			@RequestHeader(value = "x-header-timestamp") Long timestamp,
 			@RequestHeader(value = "x-header-appid") String appid,
 			@RequestHeader(value = "x-header-sign") String sign) 
-            ```
+```
 
 #### 3 计算签名
 可能需要在GLobalExceptionHandler中增加
@@ -61,7 +62,7 @@ sign=Md5(orignalString).toUpperCase
     		LOGGER.debug("handleServletRequestBindingException", ex);
     		return new ErrorMessage(ErrorCode.INVALID_HEADER.getCode(), ex.getMessage());//TODO
     	}
-        ```
+```
 
 
 ### 注意：因为在ControllerAdvice消费了Request的InputStream，所以需要在前面的Filter中Copy一份Request出来
