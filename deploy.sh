@@ -22,3 +22,14 @@ git push origin master
 
 # Come Back
 cd ..
+
+echo -e "\033[0;32mDeploying origin files to GitHub blog-hugo...\033[0m"
+
+
+git add -A
+
+
+git commit -m "$msg"
+
+# Push source and build repos.
+git push origin master

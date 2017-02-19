@@ -1,7 +1,7 @@
 +++
 title = "一个诡异的Data source is closed问题"
 draft = false
-date = "2015-12-19"
+date = "2015-10-19"
 Categories = ["Tech"] 
 Description = "" 
 Tags = ["java", "Dbcp"] 
