@@ -1,7 +1,7 @@
 +++
 title = "Logback的一些奇技淫巧"
 draft = false
-date = "2015-09-11"
+date = "2015-08-23"
 Categories = ["Tech"] 
 Description = "" 
 Tags = ["logback"] 
