@@ -66,5 +66,58 @@ sign=Md5(orignalString).toUpperCase
 ```
 
 
-### 注意：因为在ControllerAdvice消费了Request的InputStream，所以需要在前面的Filter中Copy一份Request出来
+### 增加Filter 
 
+注意：因为在ControllerAdvice消费了Request的InputStream，所以需要在前面的Filter中Copy一份Request出来
+代码如下：
+```
+/**
+ * Wrapper used to be able to consume multiple times the InputStream provided by
+ * HttpServletRequest
+ *
+ * @author lawulu
+ * @see https://github.com/ClouDesire/spring-utils/
+ * 
+ */
+
+public class CustomHttpServletRequestWrapper extends HttpServletRequestWrapper {
+    private final byte[] body;
+
+    public CustomHttpServletRequestWrapper(HttpServletRequest request) throws IOException {
+        super(request);
+        if (request.getContentType() != null
+                && request.getContentType().contains(MediaType.APPLICATION_JSON.toString())) {
+            InputStream inputStream = request.getInputStream();
+            if (inputStream != null) {
+                body = IOUtils.toByteArray(inputStream);
+                return;
+            }
+        }
+        body = null;
+    }
+
+    @Override
+    public ServletInputStream getInputStream() throws IOException {
+        if (body == null)
+            return super.getInputStream();
+
+        final ByteArrayInputStream stream = new ByteArrayInputStream(body);
+        ServletInputStream inputStream = new ServletInputStream() {
+            @Override
+            public int read() throws IOException {
+                return stream.read();
+            }
+        };
+        return inputStream;
+    }
+
+    @Override
+    public BufferedReader getReader() throws IOException {
+        if (body == null)
+            return super.getReader();
+
+        return new BufferedReader(new InputStreamReader(new ByteArrayInputStream(body), StandardCharsets.UTF_8));
+    }
+
+}
+```
