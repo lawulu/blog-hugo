@@ -7,8 +7,8 @@ Description = ""
 Tags = ["JS", "Chrome"] 
 
 +++
-### 基础代码
-Js端，使用的FormData
+### Js端
+使用的FormData
 ```
 var formData = new FormData();
     var actionUrl = "/report/agentUpload";

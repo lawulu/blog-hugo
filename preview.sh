@@ -1,2 +1,2 @@
- hugo server -t hugo_theme_beg --buildDrafts
+ hugo server -t hugo-pacman-theme --buildDrafts
 
