@@ -16,11 +16,14 @@ Logback是一款非常优秀的日志框架。但是每个开发面对的需求�
 4. Logback的默认Rolling策略是：有新的Log产生，如果需要rolling，则rename原来的文件。这样会存在的一个问题就是，如果没有新的log产生，就不会重命名原来的文件。如果遇上需要同步日志（例如Rsync），就会出现问题。
 
 ### 日志的TraceId
+
 1. 在Filter里面增加一个，ThreadLocal based 变量：
+
+
 ```
+
 public class CustomFilter extends OncePerRequestFilter {
 	
-	/** The Constant random. */
 	private static final Random random = new Random(System.currentTimeMillis()); //TODO
 
 	@Override
@@ -42,16 +45,19 @@ public class CustomFilter extends OncePerRequestFilter {
 	}
 
 }
-```
-2. 配置文件
+ ```
+
+ 2. 配置文件
 
 ```
  <encoder>
 	        <pattern>%d{yyyy-MM-dd HH:mm:ss} %-4relative [%thread] %-5level %logger{35} [%X{x-jjk-rqid:-notFound}]- %msg%n</pattern>
 	    </encoder>
 ```
+
 ### 自动更新配置
 显然会影响效率
+
 ```
 <configuration debug="true" scan="true" scanPeriod="1 minutes">
 
@@ -88,10 +94,13 @@ public class CustomFilter extends OncePerRequestFilter {
 ```
 代码中需要写MDC变量：
 
+
 ```
         MDC.put("date", dateString);
 
 ```
+
+
 
 
 
