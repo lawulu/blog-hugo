@@ -28,12 +28,12 @@ RSSUri = "feed.xml"
   FancyBox = true
 
   # 使用多说评论
-  #[Params.DuoShuo]
-  #  ShortName = "coderzh"
+  [Params.DuoShuo]
+    ShortName = "lawulu"
 
   # 使用 Disqus 评论
-  [Params.Disqus]
-    ShortName = "inza9hi"
+  #[Params.Disqus]
+  #  ShortName = "inza9hi"
 
   # Google 统计
   #[Params.GoogleAnalytics]

@@ -1,2 +1,2 @@
- hugo server -t pacman --buildDrafts
+ hugo server -v -t pacman --buildDrafts
 
