@@ -29,7 +29,7 @@ RSSUri = "feed.xml"
 
   # 使用多说评论
   [Params.DuoShuo]
-    ShortName = "lawulu"
+    ShortName = "inza9hi"
 
   # 使用 Disqus 评论
   #[Params.Disqus]
