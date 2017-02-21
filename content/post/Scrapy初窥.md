@@ -12,7 +12,7 @@ toc = true
 ## 简介
 Scrapy其实是一个很轻量级或者简单的框架。几个概念：
 1. `Request`,`Response`，顾名思义，对应的就是网络的请求和响应。
-2. `Item`对应的是爬取到的结果。
+2. `Item`或者python dict,对应的是爬取到的结果。
 3. `Pipeline`对Item的处理。
 4. `Selector`对应的是对HTML的处理
 5. `Middleware`相当于Filter，分两种，一种是针对Spider，一种针对网络连接
@@ -25,7 +25,7 @@ Scrapy其实是一个很轻量级或者简单的框架。几个概念：
  看图其实很清楚：
 ![Scrapy Arch](/iimg/scrapy.png)
 
-从StartRequest开始，不停的返回Item或者返回Request，如果返回Item，就发到Pipeline去处理，返回Request，归根结底还是要返回Item的。
+从StartRequest开始，不停的返回Item或者返回Request，如果返回Item，就发到Pipeline去处理，返回Request，经过Callback处理之后，归根结底还是要返回Item的。
 ## 简单示例
 ```
 import scrapy
@@ -56,7 +56,7 @@ class ZhihuSpider(scrapy.Spider):
 当然这个示例跑起来之前，需要改一些配置文件和设置User-agent…
 ## 吐槽
 ### 日志只打印Unicode问题
-Debug和监控起来非常不方便，我看官方把这个issue当做wont fix了，强烈推荐直接上Python3。scrapy shell简直没了存在的必要
+Debug和监控起来非常不方便，我看官方把这个issue当做wont fix了，强烈推荐直接上Python3。对非英文世界来说，Python2下scrapy shell简直没了存在的必要…
 
 ```
 2017-01-15 23:25:54 [scrapy] DEBUG: Scraped from <200 https://www.zhihu.com/question/29218955/answer/41797438> 
