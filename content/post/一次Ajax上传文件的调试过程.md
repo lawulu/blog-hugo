@@ -5,9 +5,12 @@ date = "2015-12-19"
 Categories = ["爆栈&基线器"] 
 Description = "" 
 Tags = ["JS", "Chrome"] 
+toc = true
 
 +++
+
 ### Js端
+
 使用的FormData
 ```
 var formData = new FormData();
@@ -35,7 +38,9 @@ Required MultipartFile parameter 'file' is not present
 
 
 ### Server端的问题？
-#### 是否发到了Server？
+
+是否发到了Server？
+
 看Network：
 
 ```
@@ -71,7 +76,9 @@ protected MultipartParsingResult parseFileItems(List<FileItem> fileItems, String
 ```
 如果是false…就往MultipartFile里面填值。
 难道是Content-type的问题？
+
 ### 去Js端
+
 先找到如何打印Formdata的：
 http://stackoverflow.com/questions/17066875/how-to-inspect-formdata
 

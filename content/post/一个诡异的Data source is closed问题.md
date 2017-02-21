@@ -5,6 +5,7 @@ date = "2015-10-19"
 Categories = ["爆栈&基线器"] 
 Description = "升级DBCP版本造成的莫名其妙的错误…" 
 Tags = ["java", "Dbcp"] 
+toc = true
 
 +++
 
