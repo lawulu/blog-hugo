@@ -2,7 +2,7 @@
 title = "一次Ajax上传文件的调试过程"
 draft = false
 date = "2015-12-19"
-Categories = ["Tech"] 
+Categories = ["爆栈&基线器"] 
 Description = "" 
 Tags = ["JS", "Chrome"] 
 

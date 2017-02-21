@@ -2,7 +2,7 @@
 title = "Logback的一些奇技淫巧"
 draft = false
 date = "2015-08-23"
-Categories = ["Tech"] 
+Categories = ["爆栈&基线器"] 
 Description = "" 
 Tags = ["logback"] 
 
