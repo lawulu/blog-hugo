@@ -8,7 +8,8 @@ Tags = ["JS", "Chrome"]
 toc = true
 
 +++
-
+很久不做Web了，帮一小弟解决的一个问题。据他说无脑搜了很久…
+## 现象和代码
 ### Js端
 
 使用的FormData
@@ -37,11 +38,11 @@ Required MultipartFile parameter 'file' is not present
 ```
 
 
-### Server端的问题？
+## Server端的问题？
 
 是否发到了Server？
 
-看Network：
+看Chrome Network面板里面这次请求的Request：
 
 ```
 ------WebKitFormBoundaryNLPhxKE21THaBaN1
@@ -60,8 +61,9 @@ multipartParameters = {HashMap@8882}  size = 1
 multipartParameterContentTypes = {HashMap@8883}  size = 1
 multipartFiles = {LinkedMultiValueMap@8884}  size = 0
 ```
-即其实Request里面有东西，但是multipartFiles没有东西……
-其实这时候应该已经看出问题了，因为那个值是一个String，但是没注意，自己盲目以为只要带multipartParameters就是文件
+Request里面有东西，但是multipartFiles没有东西……
+
+*其实这时候应该已经看出问题了，因为那个值是一个String，但是没注意，自己盲目以为只要带multipartParameters就是文件*
 
 debug到CommonsMultipartResolver的resolveMultipart方法，里面有这段判断
 ```
@@ -108,7 +110,7 @@ lastModifiedDate: Tue Dec 20 2015 10:39:39 GMT+0800 (CST)name: "工作簿1.xlsx"
 ```
 
 ### 结论
-- ++**盲目的去搜索其实非常浪费时间**++
+- **盲目的去搜索其实非常浪费时间**
 - 要善用Chrome Console
 
 

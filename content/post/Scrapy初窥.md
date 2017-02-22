@@ -1,13 +1,16 @@
 +++
 title = "Scrapy"
 draft = false
-date = "2017-02-15"
+date = "2016-10-15"
 Categories = ["爆栈&基线器"] 
 Description = "" 
 Tags = ["scrapy","爬虫","python"] 
 toc = true
 
 +++
+
+先说结论，爬虫分为两种，一种是贪婪爬虫，最常用的就是搜索引擎，看见Url就爬。另外一种是专业爬虫，类似于网络小数定期更新，价格比对。Scrapy适合做第二种。Scrapy专心做爬取逻辑，其优势是框架比较成熟，各种插件比较全。如果真正做一个工业化的产品，Scrapy远远不够，还要攒很多东西进来。其实如果对`requests`和`beautifulsoup`熟悉，直接上这俩就挺好的。
+
 
 ## 简介
 Scrapy其实是一个很轻量级或者简单的框架。几个概念：
@@ -25,7 +28,7 @@ Scrapy其实是一个很轻量级或者简单的框架。几个概念：
  看图其实很清楚：
 ![Scrapy Arch](/iimg/scrapy.png)
 
-从StartRequest开始，不停的返回Item或者返回Request，如果返回Item，就发到Pipeline去处理，返回Request，经过Callback处理之后，归根结底还是要返回Item的。
+从StartRequest开始，不停的返回Item或者返回Request，如果返回Item，就发到Pipeline去处理，返回Request，经过Callback处理之后，直到所有的Request都变成Item。正所谓，世界是属于Request，归根结底还是属于Item的。
 ## 简单示例
 ```
 import scrapy
@@ -63,16 +66,14 @@ Debug和监控起来非常不方便，我看官方把这个issue当做wont fix�
 {'content': [u'\u666e\u6d31\u5728\u8fc7\u53bb\u5e94\u8be5\u662f\u4e0d\u4e0a\u53f0\u9762\u7684\u5427\uff1f\u4e5f\u6ca1\u95ee\u662f\u4e0d\u662f\u5c31\u95ee\u4e3a\u4ec0\u4e48\u4e86\uff0c\u5982\u679c\u95ee\u9898\u6709\u9519\u8bef\uff0c\u8bf7\u6307\u6b63'], 'link': 'https://www.zhihu.com/question/19258955/answer/42797438', 'title': u'\u666e\u6d31\u7531\u539f\u6765\u4e0d\u4e0a\u53f0\u9762\u7684\u8fb9\u9500\u8336\u5230\u5982\u4eca\u53d7\u5230\u5e7f\u5927\u8336\u53cb\u559c\u7231\u7684\u8336\u7c7b\uff0c\u9664\u4e86\u7092\u4f5c\u5916\uff0c\u666e\u6d31\u7684\u5de5\u827a\u6216\u8005\u8d28\u91cf\u6709\u4e86\u5f88\u5927\u8fdb\u6b65\u5417\uff1f'} 
 
 ```
-### scheduler太弱
-自带的scheduler只能深度优先和广度优先，官方推荐是自家的scrapyd，稍微了解了下，应该是启动时候把任务分给多个进程，进程之间好像没法交互
+### Scheduler太弱
+自带的scheduler只能深度优先和广度优先，官方推荐是自家的scrapyd，稍微了解了下，应该是启动时候把任务分给多个进程，进程之间好像没法交互。
 ### Spider/Request之间很难协同
-很多时候我们需要某几个Request应该在一个组里面，可以共用Cookie，共用Ip。可以用meta来实现…由于Scrapy的Request是无脑yield出来的，实现出来肯定很丑陋。
+很多时候我们需要某几个Request应该在一个组里面，同一个组的Request可以共用Cookie，共用代理。这类的需求可以通过meta机制来实现…由于Scrapy的Request是无脑yield出来的，实现出来肯定很丑陋。
 ### Callback hell
 通过Callback来绑定处理方法，入口和可测试性很差，怪不得要加入Contract机制
 ### 容错
-容错机制很少，总感觉只用Scrapy只能做出一个玩具来
-
-**结论**：其实直接上`requests`和`beautifulsoup`挺好的，Scrapy的优势是各种插件比较全，只专心做爬取逻辑。如果真正做一个工业化的产品，Scrapy远远不够，还要攒很多东西进来。
+容错机制很少，需要把Task持久化，官方提供的持久化到disk的方案感觉很初级很粗糙。
 
 ## Splash
 Pyspider是用的`PhantomJS`，Scrapy提供了一个基于Docker和Lua的Splash。
@@ -83,7 +84,7 @@ Splash可以执行Lua脚本，官方封装了Splash类，可以和JS交互。这
 Lua 很值得一学，Nginx，游戏引擎，Redis都在用……
 快速入门：http://tylerneylon.com/a/learn-lua/
 
-Lua稍微复杂并且可以玩出花的就是Metatable了，可以重载对字典(对象)各种操作符。
+Lua稍微复杂并且可以玩出花的内置机制就是Metatable了，可以重载对字典(对象)各种操作符。
 
 
 
