@@ -26,12 +26,9 @@ Description = ""
 + `aij一思考` 取自“人类一思考上帝就发笑”和黑客帝国里面的Matrix
 
 ### TODO
-+ 静态网站缺点是对帖子Metadata的管理不方便,话说对文本文件设置metadata怎么没有流行起来？现在S3和OSS都是有metadata的
-
-+ 编辑器（我用有道)和Hexo对Markdown的语法支持不一致,插入图片也不方便.Go还是比较年轻,貌似可供选择的Markdown渲染也不多,回头研究一下
-
-+ 想办法把百度的文章以及放到微博微信知乎上的东西写程序导过来
-
-+ Table Content支持
-
-+ Git submodule研究……貌似突然不行了,现在只能在Idea里面提交
++[ ] 静态网站缺点是对帖子Metadata的管理不方便,需要想办法处理一下.话说对文本文件设置metadata怎么没有流行起来？现在S3和OSS都是有metadata的
++[ ] 编辑器（我用有道)和Hexo对Markdown的语法支持不一致,插入图片也不方便.Go还是比较年轻,貌似可供选择的Markdown渲染也不多,回头研究一下
++[ ] 想办法把百度的文章以及放到微博微信知乎上的东西写程序导过来
++[x] ~~Table Content支持~~ 
++[ ] Git submodule研究……貌似突然不行了,现在只能在Idea里面提交
++[x] ~~百度统计~~
