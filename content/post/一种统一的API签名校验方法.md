@@ -69,7 +69,7 @@ sign=Md5(orignalString).toUpperCase
 
 ## 增加Filter 
 
-注意：因为在ControllerAdvice消费了Request的InputStream，所以需要在前面的Filter中Copy一份Request出来
+注意：因为在ControllerAdvice消费了Request的InputStream,所以需要在前面的Filter中Copy一份Request出来
 代码如下：
 ```
 /**

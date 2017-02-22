@@ -4,11 +4,11 @@ draft = false
 date = "2015-12-19"
 Categories = ["爆栈&基线器"] 
 Description = "" 
-Tags = ["JS", "Chrome"] 
+Tags = ["js", "chrome"] 
 toc = true
 
 +++
-很久不做Web了，帮一小弟解决的一个问题。据他说无脑搜了很久…
+很久不做Web了,帮一小弟解决的一个问题.据他说无脑搜了很久…
 ## 现象和代码
 ### Js端
 
@@ -31,7 +31,7 @@ var formData = new FormData();
 ```
 public String upload(HttpServletRequest request, @RequestParam(value="file",required = true) MultipartFile file, ModelMap model)
 ```
-但是就是取不到，报错：
+但是就是取不到,报错：
 
 ```
 Required MultipartFile parameter 'file' is not present
@@ -53,7 +53,7 @@ Content-Disposition: form-data; name="file"
 ```
 
 
-貌似是正确的，在Server端确认一下，将参数加上required=false
+貌似是正确的,在Server端确认一下,将参数加上required=false
 查看request:
 
 ```
@@ -61,11 +61,11 @@ multipartParameters = {HashMap@8882}  size = 1
 multipartParameterContentTypes = {HashMap@8883}  size = 1
 multipartFiles = {LinkedMultiValueMap@8884}  size = 0
 ```
-Request里面有东西，但是multipartFiles没有东西……
+Request里面有东西,但是multipartFiles没有东西……
 
-*其实这时候应该已经看出问题了，因为那个值是一个String，但是没注意，自己盲目以为只要带multipartParameters就是文件*
+*其实这时候应该已经看出问题了,因为那个值是一个String,但是没注意,自己盲目以为只要带multipartParameters就是文件*
 
-debug到CommonsMultipartResolver的resolveMultipart方法，里面有这段判断
+debug到CommonsMultipartResolver的resolveMultipart方法,里面有这段判断
 ```
 protected MultipartParsingResult parseFileItems(List<FileItem> fileItems, String encoding) {
 		MultiValueMap<String, MultipartFile> multipartFiles = new LinkedMultiValueMap<String, MultipartFile>();
@@ -76,7 +76,7 @@ protected MultipartParsingResult parseFileItems(List<FileItem> fileItems, String
 		for (FileItem fileItem : fileItems) {
 			if (fileItem.isFormField()) {
 ```
-如果是false…就往MultipartFile里面填值。
+如果是false…就往MultipartFile里面填值.
 难道是Content-type的问题？
 
 ### 去Js端
