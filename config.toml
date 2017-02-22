@@ -38,6 +38,8 @@ RSSUri = "feed.xml"
   # Google 统计
   #[Params.GoogleAnalytics]
    # ID = "UA-10147768-2"
+  [Params.BaiduTongji]
+     ID = "a24013e82826068c6eb039dd12fe596e"
 
   # 多语言字符串
   [Params.Strings]
