@@ -9,7 +9,7 @@ toc = true
 
 +++
 
-无数人吐槽过前端框架的层出不穷,眼看前端开发要脱离浏览器兼容性的苦海,又要落入框架碎片化,从语言本身到编译到打包到开发框架,是终端用户需求太多还是前端大牛们野心太大? 不管怎样,报G家大腿选择Angular似乎没什么问题,另一个大腿的Reactive本身不是一个完备的框架.
+无数人吐槽过前端框架的层出不穷,眼看前端开发要脱离浏览器兼容性的苦海,又要落入框架碎片的深坑.从语言本身到编译到打包到开发框架各种框架层出不穷...是终端用户需求太多还是前端大牛们野心太大? 不管怎样,报G家大腿选择Angular似乎没什么问题,另一个大腿的Reactive本身不是一个完备的框架.
 
 ## Angular简介
 - 在Web开发中需要JS做什么？
@@ -73,3 +73,11 @@ jQuery.ajax() => $http
 
 ### $Resource
 一个对HttpRest的封装,简单的CRUD确实很方便,但是遇到复杂的需求就要抓瞎,很多时候需要调整后端..所以有很多人说,Angular适合做简单的CRUD应用.
+
+### Ng-change
+```
+Error: [$compile:ctreq] http://errors.angularjs.org/1.4.5/$compile/ctreq?p0=ngModel&p1=ngChange
+
+```
+ng-change requires ng-model, without it will not work
+
