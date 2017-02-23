@@ -58,3 +58,18 @@ toc = true
 Angular提供了Ng-show等逻辑判断,来控制页面的变化.
 提供了Switch和For来做分支和循环.
 简单来说,基本可以对Html的显示进行编程.
+
+### $scope.$apply()
+点击按钮之后,为什么会绑定成功?奥秘就在于Angular把
+```
+Events => ng-click
+Timeouts => $timeout
+jQuery.ajax() => $http
+```
+都Wrapper了,只要这些事件被触发,自动调用`$scope.$apply()`
+
+问题是很多时候(在$scope之外的操作)需要自己手动调用, 但是Angular又保证此方法不能调用两次.
+所以官方推荐使用Angular自己那套($Resource,$Route,service之类...).恩,有种上了贼船的感觉.
+
+### $Resource
+一个对HttpRest的封装,简单的CRUD确实很方便,但是遇到复杂的需求就要抓瞎,很多时候需要调整后端..所以有很多人说,Angular适合做简单的CRUD应用.
