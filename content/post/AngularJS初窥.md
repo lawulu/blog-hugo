@@ -75,9 +75,12 @@ jQuery.ajax() => $http
 一个对HttpRest的封装,简单的CRUD确实很方便,但是遇到复杂的需求就要抓瞎,很多时候需要调整后端..所以有很多人说,Angular适合做简单的CRUD应用.
 
 ### Ng-change
+ng-change requires ng-model, without it will not work
+
 ```
 Error: [$compile:ctreq] http://errors.angularjs.org/1.4.5/$compile/ctreq?p0=ngModel&p1=ngChange
 
 ```
-ng-change requires ng-model, without it will not work
+另外 ng-change对File不生效
 
+https://github.com/angular/angular.js/issues/1375
