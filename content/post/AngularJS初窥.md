@@ -84,3 +84,6 @@ Error: [$compile:ctreq] http://errors.angularjs.org/1.4.5/$compile/ctreq?p0=ngMo
 另外 ng-change对File不生效
 
 https://github.com/angular/angular.js/issues/1375
+
+### 单元测试
+Angular轮了一套Service,Factory之流,自然也少不了单元测试..不知道有多少人会为页面写这玩意.

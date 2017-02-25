@@ -8,7 +8,8 @@ Tags = ["js", "chrome"]
 toc = true
 
 +++
-很久不做Web了,帮一小弟解决的一个问题.据他说无脑搜了很久…
+很久不做Web了,帮一小弟解决的一个问题.发现新人解决问题都是在Search and Try,据他说无脑搜了很久,但是不会利用Chrome,也不会分析问题.
+
 ## 现象和代码
 ### Js端
 
@@ -113,6 +114,19 @@ lastModifiedDate: Tue Dec 20 2015 10:39:39 GMT+0800 (CST)name: "工作簿1.xlsx"
 - **盲目的去搜索其实非常浪费时间**
 - 要善用Chrome Console
 
+## Chrome的一些调试技巧
+### 如何找到对应的元素触发的function？
+可以在EventListerner里面把Click当做断点，也可以点击某个元素，找到对应监听的EventListener,或者对某一个片dom点击`Break on subtree modification`
+### 缓存相关
+1. 强制刷新 cmd+shift+r
+2. 可以在设置中禁止缓存
+### console
+在某个页面，可以在console页面随时调试,甚至可以执行函数：
+
+```
+$('.choose_endcard').click()
+```
+But,为什么Xpath选择的不能调用Click…
 
 
 

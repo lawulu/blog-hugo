@@ -1,7 +1,7 @@
 +++
 title = "Scrapy"
 draft = false
-date = "2016-10-15"
+date = "2015-10-15"
 Categories = ["爆栈&基线器"] 
 Description = "" 
 Tags = ["scrapy","爬虫","python"] 
@@ -63,7 +63,7 @@ Java出身的程序员的吐槽… 不用在意😜
 Debug和监控起来非常不方便,我看官方把这个issue当做wont fix了,强烈推荐直接上Python3.对非英文世界来说,Python2下scrapy shell简直没了存在的必要…
 
 ```
-2017-01-15 23:25:54 [scrapy] DEBUG: Scraped from <200 https://www.zhihu.com/question/29218955/answer/41797438> 
+2015-10-14 23:25:54 [scrapy] DEBUG: Scraped from <200 https://www.zhihu.com/question/29218955/answer/41797438> 
 {'content': [u'\u666e\u6d31\u5728\u8fc7\u53bb\u5e94\u8be5\u662f\u4e0d\u4e0a\u53f0\u9762\u7684\u5427\uff1f\u4e5f\u6ca1\u95ee\u662f\u4e0d\u662f\u5c31\u95ee\u4e3a\u4ec0\u4e48\u4e86\uff0c\u5982\u679c\u95ee\u9898\u6709\u9519\u8bef\uff0c\u8bf7\u6307\u6b63'], 'link': 'https://www.zhihu.com/question/19258955/answer/42797438', 'title': u'\u666e\u6d31\u7531\u539f\u6765\u4e0d\u4e0a\u53f0\u9762\u7684\u8fb9\u9500\u8336\u5230\u5982\u4eca\u53d7\u5230\u5e7f\u5927\u8336\u53cb\u559c\u7231\u7684\u8336\u7c7b\uff0c\u9664\u4e86\u7092\u4f5c\u5916\uff0c\u666e\u6d31\u7684\u5de5\u827a\u6216\u8005\u8d28\u91cf\u6709\u4e86\u5f88\u5927\u8fdb\u6b65\u5417\uff1f'} 
 
 ```
