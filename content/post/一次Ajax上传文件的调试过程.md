@@ -127,6 +127,7 @@ lastModifiedDate: Tue Dec 20 2015 10:39:39 GMT+0800 (CST)name: "工作簿1.xlsx"
 $('.choose_endcard').click()
 ```
 But,为什么Xpath选择的不能调用Click…
+### Setting里面可以对console.log加上Timestamp
 
 
 
