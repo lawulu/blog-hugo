@@ -30,8 +30,10 @@ toc = true
 ## 使用一周的感受
 
 ### 一些坑:
-- http是异步,要在.function中处理,或者统一在配置里面设置`async : true`
-- 怎么Lazy初始化？没有找到办法
+- 架构很恢弘，学习曲线很陡峭
+- http是异步,要在.function中处理,为避免因为异步未完成引起的页面问题，课可以统一在配置里面设置`async : true`
+- 怎么Lazy初始化？没有找到办法，可能需要自定义Directive
+- 一些自定义Directive封装的不彻底，各种问题。
 
 ### Controller之间的交互
 两种办法
@@ -48,7 +50,7 @@ toc = true
 ```
 
 ### 与Jquery/JS之间的交互
-- 有时候Jquery绑定Function时候,Dom并没有生成,所以需要替换成Angular的`ng-click`事件.
+- 有时候Jquery绑定Function时候,Dom并没有生成,所以需要替换成Angular的`ng-click`事件,或者需要绑定到顶级上面,冒泡绑定.
 - JS中可以通过元素来找的其绑定的scope
     ```
     window.angular.element("#divId").scope().doSth()
@@ -87,3 +89,34 @@ https://github.com/angular/angular.js/issues/1375
 
 ### 单元测试
 Angular轮了一套Service,Factory之流,自然也少不了单元测试..不知道有多少人会为页面写这玩意.
+
+## Angular自定义Directive和Ng-repeat的问题
+### 现象
+同事自定义了一个`directive`，模仿[这里](http://www.cnblogs.com/e50000/p/5663806.html)做的一个日期控件。这个`directive`需要input域里面含有一个id。另外一个同事想在 `np-repeat`里面使用这个控件，为了保证id唯一性，写成了这样，
+```
+ <input type="text" ng-model="statDatas[$index].endDate" class="overviews_date" placeholder="结束时间" "id="{{'startDateInput'+$index}}"  ng-change="statDateChanged($index)" readonly  def-laydate>
+```
+结果一直报错
+
+```
+TypeError: Cannot read property 'tagName' of undefined
+    at Object.Dates.run (http://localhost:8081/resources/js/laydate.js:171:42)
+    at win.laydate (http://localhost:8081/resources/js/laydate.js:34:11)
+    at link (http://localhost:8081/resources/platformJs/ad_angular.js:592:20)
+    at http://localhost:8081/resources/angular/angular.min.js:72:493
+    at $ (http://localhost:8081/resources/angular/angular.min.js:73:46)
+    at L (http://localhost:8081/resources/angular/angular.min.js:61:495)
+    at g (http://localhost:8081/resources/angular/angular.min.js:54:326)
+    at g (http://localhost:8081/resources/angular/angular.min.js:54:349)
+    at g (http://localhost:8081/resources/angular/angular.min.js:54:349)
+    at g (http://localhost:8081/resources/angular/angular.min.js:54:349) <input type="text" ng-model="statDatas[$index].startDate" class="overviews_date ng-pristine ng-untouched ng-valid ng-isolate-scope" placeholder="开始时间" id="{{'startDateInput'+$index}}" ng-change="statDateChanged($index,ad.id)" readonly="" def-laydate="">
+```
+
+### 分析
+一开始就怀疑，是因为执行这个`directive`时候`np-repeat`还没有执行完，即这个dom还没有渲染完毕。那怎么解决呢？
+1. 监听`np-repeat`,等结束之后，再去动态的执行自定义`directive`。例如这篇文章里面：[利用angular指令监听ng-repeat渲染完成后执行脚本](http://www.tuicool.com/articles/Fb2um2e)
+2. 貌似有个Priority的属性，然而，搜了一下`np-repeat`的Priority非常大，为1000，而自定义的priority为0.
+3. 仔细看报错日志，感觉像是laydate里面拿到的document是angular渲染之前的，所以找不到对应的Input域。这时候搜索已经没有意义了，应该仔细弄清楚`directive`各行代码的意义。
+4. scope的问题？
+### 解决办法
+用原始的值传递和`$scope.$apply`来交互数据，弃掉自定义控件
