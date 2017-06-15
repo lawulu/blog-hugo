@@ -1,7 +1,7 @@
 +++
 title = "Imply和Confluent破解"
 draft = false
-date = "2017-11-02"
+date = "2017-09-20"
 Categories = ["促进大数据发展行动纲要"] 
 Description = "" 
 Tags = ["imply","druid","kafka","confluent"] 
@@ -9,7 +9,11 @@ toc = true
 
 +++
 
-其实这两个软件还是比较容易破解的，首先开发者并没有把精力放到反破解上面，相关功能做的很简单;第二没有服务器交互的反破解还是很难的，尤其是对于Java这种容易反编译的软件来说。话说过来，即时是有服务器交互，例如Idea，也有人搞出各种License Server出来。
+其实这两个软件还是比较容易破解的。因为：
+
+首先开发者并没有把精力放到反破解上面，相关功能做的很简单;
+
+第二没有服务器交互的反破解还是很难的，尤其是对于Java这种容易反编译的软件来说。话说过来，即时是有服务器交互，例如Idea，也有人搞出各种License Server出来。
 
 ## Imply Pivot
 搜索
