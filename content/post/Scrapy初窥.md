@@ -78,7 +78,7 @@ Debug和监控起来非常不方便,我看官方把这个issue当做wont fix了,
 
 ## Splash
 Pyspider是用的`PhantomJS`,Scrapy提供了一个基于Docker和Lua的Splash.
-这货的问题是Splash没有保持渲染状态的方法,对于复杂的JS交互,一般的做法是一个lua脚本执行很多次,最后返回所有的结果.这样爬取的颗粒比较大,如果中间出现异常,不好处理,而且调用`splash::wait()`总感觉不靠谱,没有提供Dom加载之后的回调吗？
+这货的问题是Splash没有保持渲染状态的方法,对于复杂的JS交互,一般的做法是一个lua脚本执行很多次,最后返回所有的结果.这样爬取的颗粒比较大,如果中间出现异常,不好处理,而且调用`splash::wait()`总感觉不靠谱,没有提供Dom加载之后的回调吗？貌似也无法解决共用tab的问题。
 ### 原理
 Splash可以执行Lua脚本,官方封装了Splash类,可以和JS交互.这样,就可可以找到Dom中的Button,直接调用click事件,然后返回某些DOM中的Html或者Json.
 ### Lua
@@ -86,6 +86,8 @@ Lua 很值得一学,Nginx,游戏引擎,Redis都在用……
 快速入门：http://tylerneylon.com/a/learn-lua/
 
 Lua稍微复杂并且可以玩出花的内置机制就是Metatable了,可以重载对字典(对象)各种操作符.
+
+### 
 
 
 
