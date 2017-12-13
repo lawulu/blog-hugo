@@ -4,7 +4,7 @@ draft = false
 date = "2017-11-02"
 Categories = ["促进大数据发展行动纲要"] 
 Description = "" 
-Tags = ["imply","druid"，"kafka","confluent"] 
+Tags = ["imply","druid","kafka","confluent"] 
 toc = true
 
 +++
