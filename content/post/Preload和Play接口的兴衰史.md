@@ -1,5 +1,5 @@
 +++
-title = "Preload和Play接口的兴衰史"
+title = "Preload接口和Play接口的兴衰史"
 draft = false
 date = "2017-06-01"
 Categories = ["AkiRoss"] 
@@ -40,5 +40,7 @@ toc = true
 1. Preload接口挑选广告，Play接口只做Impression的上报
 2. 激进的来说，每次Preload只预加载一次，播完就删
 3. 在应用启动和每次播放完成之后调用一次Preload
+
+Play的逻辑前置到Preload里面，Play沦为一个上报接口
 
 
