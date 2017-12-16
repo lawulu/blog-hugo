@@ -1,6 +1,6 @@
 +++
 title = "Preload和Play接口的兴衰史"
-draft = true
+draft = false
 date = "2017-06-01"
 Categories = ["AkiRoss"] 
 Description = "" 
@@ -9,7 +9,8 @@ toc = true
 
 +++
 
-对业务理解的深入和梳理，极大的方便了重构。
+对业务理解的深入和梳理，极大的方便了重构。先说结论：**Preload的本质是告诉SDK下一次Impression应该展示哪个广告**。
+
 
 ## 背景
 
@@ -41,4 +42,3 @@ toc = true
 3. 在应用启动和每次播放完成之后调用一次Preload
 
 
-**Preload的本质是告诉SDK下一次Impression应该曝光哪次广告**。
