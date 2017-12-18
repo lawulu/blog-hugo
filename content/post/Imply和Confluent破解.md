@@ -41,6 +41,20 @@ grep -ri 'Pivot evaluation license expired' .
 把里面日期改一下就行了
 
 ## Confluent
+
+Confluent的前端要求比较简单，是一个Java Web项目（静态资源也用jar打包），通过Guice来管理对象依赖。反编译`io.confluent.controlcenter`相关jar。很快发现这段代码：
+
+```
+ return License.baseClaims("demo", bfa.creationTime().toMillis() + TimeUnit.DAYS.toMillis(30L), true);
+```
+所以其实修改该文件的createTime就行了..
+
+
+
+
+
+不过这个破解花了我半天时间..
+
 坑一：一开始搞反了..一直没报错 还以为没生效
 ```
 jar uf /service/app/confluent-4.0.0/share/java/confluent-control-center/control-center-4.0.0.jar io/confluent/controlcenter/license/LicenseModule.class
@@ -48,8 +62,4 @@ jar uf /service/app/confluent-4.0.0/share/java/confluent-control-center/control-
 坑二：zsh ll不显示隐藏文件，习惯把ll = ls-al 而不是ls -ah 
 
 
-```
- return License.baseClaims("demo", bfa.creationTime().toMillis() + TimeUnit.DAYS.toMillis(30L), true);
-```
-所以其实修改该文件的createTime就行了..
 

@@ -4,11 +4,11 @@ draft = false
 date = "2015-12-19"
 Categories = ["爆栈&基线器"] 
 Description = "" 
-Tags = ["js", "chrome"] 
+Tags = ["js", "chrome", "debug"] 
 toc = true
 
 +++
-很久不做Web了,帮一小弟解决的一个问题.发现新人解决问题都是在Search and Try,据他说无脑搜了很久,但是不会利用Chrome,也不会分析问题.
+很久不做Web了,帮一同事解决的一个问题.发现新人解决问题都是在Search and Try,据他说无脑搜了很久,但是不会利用Chrome,也不会分析问题.
 
 ## 现象和代码
 ### Js端

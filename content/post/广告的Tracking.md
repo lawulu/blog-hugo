@@ -35,7 +35,32 @@ _**广告新人的一些感想**_
 对AdNetwork来说，由于无法知道是否安装完成，所以要通过第三方的平台来完成计费。所以，Tracking一般分为Click上报和Install的Postback。即当用户要下载一个App时候，AdNetwork马上告诉广告主（或者代表广告主的检测平台），快看，我这有个用户点击了，他要安装了！！然后就开始默默的等待..广告主收到一个安装，就会根据安装时候的信息反过来去找是谁上报的，一般会根据设备的信息（混乱之源之一)来匹配。所以上报时候一定要把设备信息给带上。上报分302让客户端上报和S2S对接两种，按下不表。
 
 ### 宏替换
-由于AdNetwork要对接的第三方平台太多，而各家Tracking时候需要的参数是不一样的。（为什么没有一个广告协会之类规范一下？！），所以就会有宏替换这么一个奇特而又奇妙的东西。举一个例子：
+由于AdNetwork要对接的第三方平台太多，而各家Tracking时候需要的参数是不一样的。（为什么没有一个广告协会之类规范一下？！），所以就会有宏替换这么一个奇特而又奇妙的东西。
 
-假如，大家需要一个参数DeviceId，A家需要的上报是http://a.com/tracking?did=XX,而B家需要的上报是http://b.com/tracking?device=XX，这时候客户需要让AdNetwork知道应该怎么上报，AdNetwork提供一批可供替换的变量，让客户自己填。例如DeviceId的变量是shebeihao，那么上面两家分别填写：http://a.com/tracking?did={shebeihao}，和http://a.com/tracking?device={shebeihao}，等上报时候，将这些信息都替换正确。等归因完成，Postback时候，也可以走同样的流程。
+举一个例子：
+
+假如，归因平台需要一个参数DeviceId，但是归因平台A用的参数是`did`，例如`http://a.com/tracking?did=XX`, 而归因平台B用的参数是`device`，例如`http://b.com/tracking?device=XX`。
+
+AdNetwork并不需要知道每一家归因平台的DeviceId应该怎么上报，只需要提供一批可供替换的变量，让客户自己填。例如DeviceId在AdNetwork的变量是shebeihao，那么上面两家分别填写：`http://a.com/tracking?did={shebeihao}`，和`http://a.com/tracking?device={shebeihao}`，等上报时候，将这些信息都被AdNetwork替换正确。
+
+同样的，归因平台也有类似的宏替换的机制，如果AdNetwork的PostBack url是`http://ad.com/postback`,那对于归因平台A，Postback url就是`http://ad.com/postback?shebeihao={did}`,对于归因平台B，Postback url就是`http://ad.com/postback?shebeihao={device}`
+归因平台也是，Postback时候，也可以走同样的流程。
+
+## 系统演进
+
+### 第一版基于参数透传
+
+并且自己组装了一个customParm,将所有需要的维度而又无法透传的参数组装到一起，回传回来直接根据这些透传参数生成安装报表。
+
+问题：
+- 参数过程某些家解析会出错
+- 传递过程中参数容易丢
+
+### 第二版基于ClickId查找
+
+只使用ClickId归因
+
+问题：
+- 支持30天回溯的话，对系统压力比较大，需要引入NoSql
+- 如果ClickId丢失，基本就丢了
 
