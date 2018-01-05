@@ -1,6 +1,6 @@
 +++
 title = "使用SparkSQL替代Hive做ETL"
-draft = false
+draft = true
 date = "2017-01-18"
 Categories = ["促进大数据发展行动纲要"] 
 Description = "" 
