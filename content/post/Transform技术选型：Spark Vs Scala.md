@@ -1,6 +1,6 @@
 +++
 title = "Transform技术选型：Spark Structured Streaming Vs Pure Scala"
-draft = true
+draft = false
 date = "2017-07-18"
 Categories = ["促进大数据发展行动纲要"] 
 Description = "" 
@@ -11,14 +11,14 @@ toc = true
 
 ## 需求
 
-公司要上实时，对原始日志进行转换，写回到Kafka，简单来说：
+公司要上实时，需要一个应用对原始日志进行转换，简单来说：
 
 1. 从Kafka读取数据，然后写回到Kafka
 2. 对日志和数据进行合并
 3. 完成归因、去重、真实点击等其他需求
 4. 完成计费
 
-需要解决这么几个技术需求：
+有这么几个技术需求：
 
 1. Json的处理，FileBeat产生的In和Druid需要的Out都是Json形式。
 2. Kafka读写
@@ -53,13 +53,15 @@ toc = true
 
 
 所谓Spark的优势：
+
 1. 以RDD/DataFrame/SQL形式提供的对数据处理的DSL，虽然比Hive效率更高，可以和Scala程序同时工作
 2. 横向扩展以及容错
-3. Broadcast/Accumulator原语
+3. Broadcast/Accumulator等原语
 4. 可以有效利用HDFS对应的计算资源，并且做为一个Unified的平台，理论上可以重用很多逻辑
 
 
 Spark的问题：
+
 1. Structured Streaming API 不稳定，我自己测试发现有Job莫名奇妙不运行的情况。
 2. 任务调度和执行都是黑盒
 
